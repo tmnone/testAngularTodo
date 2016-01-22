@@ -1,0 +1,2 @@
+angular.module("templatescache", []).run(["$templateCache", function($templateCache) {$templateCache.put("space.html","<div style=\"height: 50px;\"></div>\n");
+$templateCache.put("todo-item.html","<div class=\"row row-todo\">\n  <div class=\"col-xs-1\"><input type=\"checkbox\" ng-model=\"todo.done\"></div>\n  <div class=\"col-xs-7\">{{todo.title}}</div>\n  <div class=\"col-xs-4\">\n    <button class=\"btn btn-xs btn-default\" ng-click=\"removeTodo(todo)\">&times;</button>\n  </div>\n</div>");}]);

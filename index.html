@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="todoApp">
+  <head>
+    <title>Index Page</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/build/css/app.css">
+  </head>
+  <body>
+    <div class="container">
+      
+      <space></space>
+      
+      <div ng-controller="TodoController" class="col-xs-4 col-xs-offset-4">
+
+        <h4>Active tasks</h4>
+        <todo-item ng-repeat="todo in todos | filter: {done: false}"></todo-item>
+        <hr>
+
+        <h4>Completed tasks</h4>
+        <todo-item ng-repeat="todo in todos | filter: {done: true}"></todo-item>
+
+        
+        <space></space>
+        <form class="input-group input-group-lg" ng-submit="addTodo()">
+          <input type="text" class="form-control" ng-model="newTodoTitle">
+          <div class="input-group-btn">
+            <button type="submit" class="btn btn-primary">add todo</button>
+          </div>
+        </form>
+
+      </div>
+
+    </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.1/angular.js"></script>
+    <script type="text/javascript" src="/build/js/tpl.js"></script>
+    <script type="text/javascript" src="/build/js/app.js"></script>
+  </body>
+</html>
