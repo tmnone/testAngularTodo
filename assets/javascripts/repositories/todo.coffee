@@ -4,10 +4,16 @@ window.app.factory 'TodoRepository',
       getAll: () ->
         window.TODOS
 
-      add: (todo) ->
+      getTodo: (id) ->
+        window.TODOS[id]
+
+      addTodo: (todo) ->
         window.TODOS.push todo
 
-      remove: (todo) ->
+      addDescription: (id, description) ->
+        window.TODOS[id].description = description
+
+      removeTodo: (todo) ->
         index = window.TODOS.indexOf(todo)
         window.TODOS.splice(index, 1)
 

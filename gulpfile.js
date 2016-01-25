@@ -16,31 +16,31 @@ var gulp = require('gulp'),
 
 // Sources
 var src = {
-  'css': ['assets/stylesheets/app.scss'],
-  'html': ['assets/views/**/*.html'],
-  'js': [
-    'assets/javascripts/**/*.coffee'
-  ]
+  'css':  ['assets/stylesheets/app.scss'],
+  'html': ['assets/views/pages/**/*.html'],
+  'tpls': ['assets/views/tpls/**/*.html'],
+  'js':   ['assets/javascripts/**/*.coffee']
 }
 
 // Dests
 var dest = {
   'scss': 'build/css',
-  'js'  : 'build/js'
+  'js'  : 'build/js',
+  'html': 'build/pages'
 }
 
 // Watches
 var watch = {
-  'css': 'assets/stylesheets/**/*.scss',
-  'html': ['assets/views/**/*.html', './*.html'],
-  'js': [
-    'assets/javascripts/**/*.coffee'
-  ]
+  'css':  ['assets/stylesheets/**/*.scss'],
+  'html': ['assets/views/pages/**/*.html'],
+  'tpls': ['assets/views/tpls/**/*.html'],
+  'js':   ['assets/javascripts/**/*.coffee']
 } 
 
-// Server connect
+// Server
 gulp.task('connect', function() {
   connect.server({
+    root: 'build',
     port: 4567,
     livereload: true
   });
@@ -57,12 +57,20 @@ gulp.task('css', function () {
     .pipe(connect.reload());
 });
 
+// TPLS
+gulp.task('tpls', function () {
+  gulp.src(src.tpls)
+    .pipe(plumber())
+    .pipe(templateCache('tpl.js', { module:'templatescache', standalone:true}))
+    .pipe(gulp.dest(dest.js))
+    .pipe(connect.reload());
+});
+
 // HTML
 gulp.task('html', function () {
   gulp.src(src.html)
-  .pipe(templateCache('tpl.js', { module:'templatescache', standalone:true}))
-  .pipe(gulp.dest(dest.js))
-  .pipe(connect.reload());
+    .pipe(gulp.dest(dest.html))
+    .pipe(connect.reload());
 });
 
 // JS
@@ -80,9 +88,10 @@ gulp.task('js', function() {
 // Watch
 gulp.task('watch', function() {
   gulp.watch(watch.html, ['html']);
-  gulp.watch(watch.css, ['css']);
-  gulp.watch(watch.js,  ['js']);
+  gulp.watch(watch.css,  ['css']);
+  gulp.watch(watch.tpls, ['tpls']);
+  gulp.watch(watch.js,   ['js']);
 });
 
 // Default
-gulp.task('default', ['css', 'html', 'js', 'watch', 'connect']);
+gulp.task('default', ['css', 'html', 'tpls', 'js', 'watch', 'connect']);
