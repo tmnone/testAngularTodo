@@ -1,0 +1,29 @@
+<div>
+  <h1 ng-class="{'text-muted': todo.done}">
+    {{todo.title}}
+    <a href="#" class="small" ng-click="showTitleForm = !showTitleForm"><span class="fa fa-fw fa-pencil"></span></a>
+    <div class="small" ng-if="todo.done"><small>Task completed</small></div>
+  </h1>
+  
+  <form class="form-group input-group input-group-sm" ng-show="showTitleForm" ng-submit="updateTitle(newTodoTitle); showTitleForm = !showTitleForm">
+    <input type="text" class="form-control" ng-model="newTodoTitle" />
+    <div class="input-group-btn">
+      <button type="submit" class="btn btn-primary">Edit title</button>
+    </div>
+  </form>
+  <hr>
+  
+  <div ng-show="todo.description" class="form-group">
+    <p>
+      {{todo.description}}
+      <a href="#" class="small text-muted" ng-click="showDescriptionForm = !showDescriptionForm"><span class="fa fa-fw fa-pencil"></span></a>
+    </p>
+  </div>
+  
+  <div ng-show="showDescriptionForm">
+    <div class="form-group">
+      <textarea class="form-control" ng-model="todoDescription" rows="3"></textarea>
+    </div>
+    <button class="btn btn-primary" ng-click="addDescription(todoDescription); showDescriptionForm = !showDescriptionForm">Add Description</button>
+  </div>
+</div>

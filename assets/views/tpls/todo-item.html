@@ -1,0 +1,9 @@
+<div class="row row-todo">
+  <div class="col-xs-1"><input type="checkbox" ng-model="todo.done"></div>
+  <div class="col-xs-7">
+    <h5 class="m-t-0"><a href="/#/todo/{{todo.id}}">{{todo.title}}</a></h5>
+  </div>
+  <div class="col-xs-4">
+    <button class="btn btn-xs btn-default" ng-click="removeTodo(todo)">&times;</button>
+  </div>
+</div>

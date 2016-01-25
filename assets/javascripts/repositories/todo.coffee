@@ -10,6 +10,9 @@ window.app.factory 'TodoRepository',
       addTodo: (todo) ->
         window.TODOS.push todo
 
+      addTitle: (id, title) ->
+        window.TODOS[id].title = title
+
       addDescription: (id, description) ->
         window.TODOS[id].description = description
 
