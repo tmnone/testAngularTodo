@@ -1,16 +1,16 @@
 window.app.controller 'TodoPageController',
-  ['$scope', '$routeParams', 'TodoRepository', ($scope, $routeParams, TodoRepository) ->
+  ['$scope', '$routeParams', 'todoRepository', ($scope, $routeParams, todoRepository) ->
     
     $scope.todoId = $routeParams.id
-    $scope.todo = TodoRepository.getTodo($scope.todoId)
+    $scope.todo = todoRepository.read($scope.todoId)
     $scope.newTodoTitle = $scope.todo.title
     $scope.todoDescription = $scope.todo.description
 
     $scope.addDescription = (todoDescription) ->
       todoDescription = null if todoDescription == ''
-      TodoRepository.addDescription($scope.todoId, todoDescription)
+      todoRepository.updateDescription($scope.todoId, todoDescription)
       
     $scope.updateTitle = (todoTitle) ->
-      TodoRepository.addTitle($scope.todoId, todoTitle)
+      todoRepository.updateTitle($scope.todoId, todoTitle)
 
   ]

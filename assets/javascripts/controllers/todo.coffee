@@ -1,7 +1,7 @@
 window.app.controller 'IndexPageController',
-  ['$scope', 'TodoEntity', 'TodoRepository', ($scope, TodoEntity, TodoRepository) ->
+  ['$scope', 'TodoEntity', 'todoRepository', ($scope, TodoEntity, todoRepository) ->
 
-    $scope.todos = TodoRepository.getAll()
+    $scope.todos = todoRepository.readAll()
     $scope.addTodo = () ->
       newTodo = new TodoEntity(
         id: $scope.todos.length || 0
@@ -9,10 +9,10 @@ window.app.controller 'IndexPageController',
         description: null
         done: false
       )
-      TodoRepository.addTodo(newTodo)
+      todoRepository.addTodo(newTodo)
       $scope.newTodoTitle = ''
 
     $scope.removeTodo = (todo) ->
-      TodoRepository.removeTodo(todo)
+      todoRepository.removeTodo(todo)
 
   ]

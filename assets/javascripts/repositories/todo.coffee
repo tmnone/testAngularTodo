@@ -1,19 +1,19 @@
-window.app.factory 'TodoRepository',
+window.app.factory 'todoRepository',
   [ ->
     class TodoRepository
-      getAll: () ->
+      readAll: () ->
         window.TODOS
 
-      getTodo: (id) ->
+      read: (id) ->
         window.TODOS[id]
 
       addTodo: (todo) ->
         window.TODOS.push todo
 
-      addTitle: (id, title) ->
+      updateTitle: (id, title) ->
         window.TODOS[id].title = title
 
-      addDescription: (id, description) ->
+      updateDescription: (id, description) ->
         window.TODOS[id].description = description
 
       removeTodo: (todo) ->
