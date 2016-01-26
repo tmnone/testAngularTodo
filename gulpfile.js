@@ -2,6 +2,7 @@
 
 // Gulp plugins
 var gulp = require('gulp'),
+    KarmaServer = require('karma').Server,
     concat = require('gulp-concat'),
     plumber = require('gulp-plumber'),
     sass = require('gulp-sass'),
@@ -93,5 +94,13 @@ gulp.task('watch', function() {
   gulp.watch(watch.js,   ['js']);
 });
 
+// Test
+gulp.task('tdd', function (done) {
+  new KarmaServer({
+    configFile: __dirname + '/karma.conf.js'
+  }, done).start();
+});
+
 // Default
 gulp.task('default', ['css', 'html', 'tpls', 'js', 'watch', 'connect']);
+gulp.task('test', ['tdd']);
