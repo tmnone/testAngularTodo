@@ -7,7 +7,6 @@ window.app.controller 'TodoPageController',
     $scope.todoDescription = $scope.todo.description
 
     $scope.addDescription = (todoDescription) ->
-      todoDescription = null if todoDescription == ''
       todoRepository.updateDescription($scope.todoId, todoDescription)
       
     $scope.updateTitle = (todoTitle) ->

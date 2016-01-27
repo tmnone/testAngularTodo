@@ -1,4 +1,4 @@
 describe "Test #1", ->
   it "check expectations", ->
-    console.log 'Test #1'
-    expect(1 + 2).toBe(3)
+    console.log 'Test #01'
+    expect(true).toBe(true)
