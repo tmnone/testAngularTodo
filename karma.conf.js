@@ -16,7 +16,7 @@ module.exports = function(config) {
       }
     },
 
-    browsers : ['Chrome'],
+    // browsers : ['Chrome'],
 
     frameworks: ['jasmine'],
 

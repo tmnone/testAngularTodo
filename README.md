@@ -7,5 +7,5 @@ Run `npm install` in project folder
 ## 4. Run gulp
 `gulp`
 
-## 4. Run tests
+## 5. Run tests
 `gulp test`
