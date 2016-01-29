@@ -1,6 +1,6 @@
 window.app = angular.module('todoApp', ['ngRoute', 'templatescache'])
 
-window.app.config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
+window.app.config(['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
   $routeProvider
     .when('/todo/:id', {
       templateUrl: '../pages/todo-page.html'
@@ -14,4 +14,4 @@ window.app.config ['$routeProvider', '$locationProvider', ($routeProvider, $loca
   $locationProvider.html5Mode
     enabled: true
     requireBase: false
-]
+])

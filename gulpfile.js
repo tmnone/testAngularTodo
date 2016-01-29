@@ -99,9 +99,12 @@ gulp.task('watch', function() {
 
 // Test
 gulp.task('tdd', function (done) {
+  console.log('Karma config path', __dirname + '/karma.conf.js');
+
   new KarmaServer({
     configFile: __dirname + '/karma.conf.js'
   }, done).start();
+
 });
 
 // Default
