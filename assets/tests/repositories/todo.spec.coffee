@@ -1,19 +1,21 @@
 describe "todoRepository", ->
 
-  $controller = {}
+  todoRepository = {}
+
+  # beforeEach ->
+  #   inject ['$controller', (_$controller_) ->
+  #     $controller = _$controller_
+  #     console.log($controller)
+  #   ]
 
   beforeEach ->
-    angular.module('todoApp')
-    console.log 'angular.mock', angular.mock
-    console.log 'window.app.name', window.app.name
-    console.log 'angular.mock.module("todoApp")', angular.mock.module('todoApp')
+    $injector = angular.injector(['todoApp'])
+    todoRepository = $injector.get('todoRepository')
 
-  beforeEach ->
-    inject ['$controller', (_$controller_) ->
-      $controller = _$controller_
-      console.log($controller)
-    ]
-
-  describe "readAll", ->
+  describe "readAll()", ->
     it "should return todo list", ->
-      expect(true).toEqual(true)
+      expect(todoRepository.readAll()).toBeArrayOfObjects()
+
+  describe "read()", ->
+    it "should return single todo", ->
+      expect(todoRepository.read(0)).toBeObject()

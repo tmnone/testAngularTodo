@@ -5,10 +5,14 @@ module.exports = function(config) {
 
     // browsers : ['Chrome'],
 
-    frameworks: ['jasmine'],
+    frameworks: [
+      'jasmine',
+      'jasmine-matchers'
+    ],
 
     plugins: [
       'karma-jasmine',
+      'karma-jasmine-matchers',
       // 'karma-chrome-launcher',
       'karma-coffee-preprocessor'
     ],

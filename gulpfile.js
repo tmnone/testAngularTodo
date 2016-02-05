@@ -20,10 +20,7 @@ var src = {
   'css':  ['assets/stylesheets/app.scss'],
   'html': ['assets/views/pages/**/*.html'],
   'tpls': ['assets/views/tpls/**/*.html'],
-  'js':   [
-    'assets/javascripts/**/*.coffee', 
-    '!assets/javascripts/**/*.spec.coffee'
-  ]
+  'js':   ['assets/javascripts/**/*.coffee']
 }
 
 // Dests
