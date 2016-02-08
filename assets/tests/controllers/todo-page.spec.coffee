@@ -22,4 +22,4 @@ describe "TodoPageController", ->
         $scope: $scope
         $routeParams: $routeParams
 
-      expect(todoRepository.read($routeParams.id)).toBeNonEmptyObject()
+      expect($scope.todo).toBeNonEmptyObject()
