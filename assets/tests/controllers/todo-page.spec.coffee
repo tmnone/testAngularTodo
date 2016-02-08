@@ -2,7 +2,7 @@ describe "TodoPageController", ->
 
   beforeEach(module('todoApp'))
 
-  $controller = $rootScope = $scope = {}
+  $controller = $rootScope = $scope = $routeParams = todoRepository = {}
   
   beforeEach ->
     
@@ -12,16 +12,14 @@ describe "TodoPageController", ->
       $controller = _$controller_
     ]
 
+    $injector = angular.injector(['todoApp'])
+    todoRepository = $injector.get('todoRepository')
+
   describe "todo Page", ->
     it "should get a todo", ->
-      # controller = $controller 'TodoPageController',
-      #   $scope: $scope
-      #   $routeParams:
-      #     id: 0
+      $routeParams.id = 0
+      $controller 'TodoPageController',
+        $scope: $scope
+        $routeParams: $routeParams
 
-      console.log '$controller', $controller('IndexPageController', {$scope: $scope})
-      # console.log '$controller', $controller('TodoPageController', {$scope: $scope})
-
-
-
-      expect(true).toBe(true)
+      expect(todoRepository.read($routeParams.id)).toBeNonEmptyObject()
