@@ -1,19 +1,23 @@
 describe "TodoPageController", ->
+  $rootScope = $scope = $routeParams = {}
+  $controller = null
+  todoRepository = null
 
-  beforeEach(module('todoApp'))
+  sampleTodo = {id: 1, title: "Title"}
 
-  $controller = $rootScope = $scope = $routeParams = todoRepository = {}
-  
   beforeEach ->
-    
+    module 'todoApp', ['$provide', ($provide)->
+      # Inject test repositories and return sample todo on read
+      todoRepository = new TestRepository({"read": sampleTodo})
+      $provide.value('todoRepository', todoRepository)
+      return null
+    ]
+
     inject ['$rootScope', '$controller', (_$rootScope_, _$controller_) ->
       $rootScope = _$rootScope_
       $scope = $rootScope.$new()
       $controller = _$controller_
     ]
-
-    $injector = angular.injector(['todoApp'])
-    todoRepository = $injector.get('todoRepository')
 
   describe "todo Page", ->
     it "should get a todo", ->

@@ -1,24 +1,27 @@
 window.app.factory 'todoRepository',
   [ ->
     class TodoRepository
+      constructor: ->
+        @todos = window.TODOS || {}
+
       readAll: () ->
-        window.TODOS
+        @todos
 
       read: (id) ->
-        window.TODOS[id]
+        @todos[id]
 
       addTodo: (todo) ->
-        window.TODOS.push todo
+        @todos.push todo
 
       updateTitle: (id, title) ->
-        window.TODOS[id].title = title
+        @todos[id].title = title
 
       updateDescription: (id, description) ->
-        window.TODOS[id].description = description
+        @todos[id].description = description
 
       removeTodo: (todo) ->
-        index = window.TODOS.indexOf(todo)
-        window.TODOS.splice(index, 1)
+        index = @todos.indexOf(todo)
+        @todos.splice(index, 1)
 
     new TodoRepository()
   ]

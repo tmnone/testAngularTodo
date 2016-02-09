@@ -3,9 +3,9 @@ describe "IndexPageController", ->
   beforeEach(module('todoApp'))
 
   $controller = $rootScope = $scope = {}
-  
+
   beforeEach ->
-    
+
     inject ['$rootScope', '$controller', (_$rootScope_, _$controller_) ->
       $rootScope = _$rootScope_
       $scope = $rootScope.$new()
@@ -18,5 +18,5 @@ describe "IndexPageController", ->
         $scope: $scope
 
       $scope.newTodoTitle = 'Title'
-      
+
       expect($scope.newTodoTitle).toBeString()

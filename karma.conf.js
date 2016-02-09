@@ -23,7 +23,12 @@ module.exports = function(config) {
       'node_modules/angular-mocks/angular-mocks.js',
       'build/js/tpl.js',
       // 'build/js/app.js',
-      'assets/javascripts/**/*.coffee',
+      'assets/javascripts/app.coffee',
+      'assets/javascripts/controllers/*.coffee',
+      'assets/javascripts/directives/*.coffee',
+      'assets/javascripts/entities/*.coffee',
+      'assets/javascripts/repositories/*.coffee',
+      'assets/tests/support/*.coffee',
       'assets/tests/**/*.spec.coffee'
     ],
 
