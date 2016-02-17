@@ -1,16 +1,32 @@
 describe "todoRepository", ->
 
-  todoRepository = {}
+  $rootScope = $scope = {}
+  todoRepository = null
 
-  # beforeEach ->
-  #   inject ['$controller', (_$controller_) ->
-  #     $controller = _$controller_
-  #     console.log($controller)
-  #   ]
+  sampleTodos = [
+    {id: 0, title: 'Todo title 1', description: '', done: false}
+    {id: 1, title: 'Todo title 2', description: '', done: false}
+    {id: 2, title: 'Todo title 3', description: '', done: false}
+    {id: 3, title: 'Todo title 4', description: '', done: false}
+  ]
 
   beforeEach ->
-    $injector = angular.injector(['todoApp'])
-    todoRepository = $injector.get('todoRepository')
+    module 'todoApp', ['$provide', ($provide)->
+      
+      # Inject test repositories and return sample todo on read
+      todoRepository = new TestRepository(
+        "read": sampleTodos[0]
+        "readAll": sampleTodos
+      )
+      $provide.value('todoRepository', todoRepository)
+      return null
+    ]
+
+    inject ['$rootScope', '$controller', (_$rootScope_, _$controller_) ->
+      $rootScope = _$rootScope_
+      $scope = $rootScope.$new()
+      $controller = _$controller_
+    ]
 
   describe "readAll()", ->
     it "should return todo list", ->
@@ -18,4 +34,4 @@ describe "todoRepository", ->
 
   describe "read()", ->
     it "should return single todo", ->
-      expect(todoRepository.read(0)).toBeObject()
+      expect(todoRepository.read()).toBeObject()
