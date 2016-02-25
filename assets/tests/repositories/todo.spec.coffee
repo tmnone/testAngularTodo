@@ -1,37 +1,37 @@
 describe "todoRepository", ->
-
-  $rootScope = $scope = {}
   todoRepository = null
-
-  sampleTodos = [
-    {id: 0, title: 'Todo title 1', description: '', done: false}
-    {id: 1, title: 'Todo title 2', description: '', done: false}
-    {id: 2, title: 'Todo title 3', description: '', done: false}
-    {id: 3, title: 'Todo title 4', description: '', done: false}
-  ]
+  todoId = 0
+  todo = { id: todoId, title: 'Todo title', description: '', done: false }
 
   beforeEach ->
-    module 'todoApp', ['$provide', ($provide)->
-      
-      # Inject test repositories and return sample todo on read
-      todoRepository = new TestRepository(
-        "read": sampleTodos[0]
-        "readAll": sampleTodos
-      )
-      $provide.value('todoRepository', todoRepository)
-      return null
-    ]
+    # module 'todoApp'
+    $injector = angular.injector(['todoApp'])
+    todoRepository = $injector.get('todoRepository')
+    todoRepository.addTodo(todo)
 
-    inject ['$rootScope', '$controller', (_$rootScope_, _$controller_) ->
-      $rootScope = _$rootScope_
-      $scope = $rootScope.$new()
-      $controller = _$controller_
-    ]
-
-  describe "readAll()", ->
-    it "should return todo list", ->
-      expect(todoRepository.readAll()).toBeArrayOfObjects()
 
   describe "read()", ->
     it "should return single todo", ->
-      expect(todoRepository.read()).toBeObject()
+      expect(todoRepository.read(todoId)).toBeObject()
+
+  describe "readAll()", ->
+    it "should return todo list", ->      
+      todoRepository.addTodo({id: todoId + 1, title: 'Todo title'})
+      expect(todoRepository.readAll()).toBeArrayOfObjects()
+
+  describe "removeTodo()", ->
+    it "should remove todo", ->
+      todoRepository.removeTodo(todo)
+      expect(todoRepository.read(todoId)).toBeUndefined()
+
+  describe "updateTitle()", ->
+    it "should update todo title", ->
+      newTitle = 'New Title'
+      todoRepository.updateTitle(todoId, newTitle)
+      expect(todoRepository.read(todoId).title).toBe(newTitle)
+
+  describe "updateDescription()", ->
+    it "should update todo description", ->
+      newDescription = 'New Description'
+      todoRepository.updateDescription(todoId, newDescription)
+      expect(todoRepository.read(todoId).description).toBe(newDescription)

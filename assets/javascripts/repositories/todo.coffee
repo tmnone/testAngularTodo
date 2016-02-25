@@ -2,7 +2,7 @@ window.app.factory 'todoRepository',
   [ ->
     class TodoRepository
       constructor: ->
-        @todos = window.TODOS || {}
+        @todos = window.TODOS || []
 
       readAll: () ->
         @todos
